@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6b79b3ef-e7a4-4c9d-94d9-ac9fb44aeaae}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>LiveQualityMonitor</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{FC1A4D80-50E9-41DA-9192-61C0DBAA00D2}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemoteBuildCommandLine>cd ~/projects/LiveQualityMonitor/debug; cmake -DCMAKE_BUILD_TYPE=Debug ..; make</RemoteBuildCommandLine>
+    <AdditionalSourcesToCopyMapping>CMakeLists.txt;$(AdditionalSourcesToCopyMapping)</AdditionalSourcesToCopyMapping>
+    <RemoteBuildOutputs>~/projects/LiveQualityMonitor/debug/LiveQualityMonitor</RemoteBuildOutputs>
+    <NMakeIncludeSearchPath>E:\temp\usr\local\include;E:\temp\usr\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <AdditionalSourcesToCopyMapping>CMakeLists.txt;$(AdditionalSourcesToCopyMapping)</AdditionalSourcesToCopyMapping>
+    <RemoteBuildCommandLine>cd ~/projects/LiveQualityMonitor/release; cmake -DCMAKE_BUILD_TYPE=Release ..; make</RemoteBuildCommandLine>
+    <RemoteBuildOutputs>~/projects/LiveQualityMonitor/release/LiveQualityMonitor</RemoteBuildOutputs>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="brisque_revised\brisque.cpp" />
+    <ClCompile Include="brisque_revised\computescore.cpp" />
+    <ClCompile Include="brisque_revised\libsvm\svm-predict.c" />
+    <ClCompile Include="brisque_revised\libsvm\svm-scale.c" />
+    <ClCompile Include="brisque_revised\libsvm\svm-train.c" />
+    <ClCompile Include="brisque_revised\libsvm\svm.cpp" />
+    <ClCompile Include="brisque_revised\main.cpp" />
+    <ClCompile Include="brisque_revised\trainModel.cpp" />
+    <ClCompile Include="FlvReader.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Inspector.cpp" />
+    <ClCompile Include="SaveFlv.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="brisque_revised\CMakeLists.txt" />
+    <Text Include="brisque_revised\readme.txt" />
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="brisque_revised\brisque.h" />
+    <ClInclude Include="brisque_revised\libsvm\svm.h" />
+    <ClInclude Include="FlvReader.h" />
+    <ClInclude Include="Inspector.h" />
+    <ClInclude Include="SaveFlv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="brisque_revised\allmodel" />
+    <None Include="brisque_revised\allrange" />
+    <None Include="brisque_revised\brisquequality.sav" />
+    <None Include="brisque_revised\libsvm\svm.def" />
+    <None Include="brisque_revised\Makefile" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
