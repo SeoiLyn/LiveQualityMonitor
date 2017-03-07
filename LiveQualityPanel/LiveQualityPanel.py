@@ -4,7 +4,8 @@ from numpy import genfromtxt
 import uuid
 from threading import Timer
 
-record_root = "/home/water/projects/LiveQualityPanel/"
+projects_root = "/home/water/projects/"
+record_root = projects_root+"LiveQualityPanel/"
 
 urls = (
     '/', 'index',
@@ -29,7 +30,7 @@ class monitor:
         flv_url = i['url']
         name = str(uuid.uuid4())
         record_read = "static/data/quality-"+ name +".csv"
-        p = Popen(['/home/water/projects/LiveQualityMonitor/debug/LiveQualityMonitor', flv_url, record_root+record_read])
+        p = Popen([projects_root+'LiveQualityMonitor/debug/LiveQualityMonitor', flv_url, record_root+record_read])
 
         t = Timer(600.0, killMonitorProcess, [p])
         t.start() # after 300 seconds, timer will trigger to stop the subprocess
