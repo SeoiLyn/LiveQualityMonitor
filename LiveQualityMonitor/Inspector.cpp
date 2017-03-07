@@ -50,8 +50,8 @@ long get_current_time_with_ms(void)
 	s = spec.tv_sec;
 	ms = round(spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
 
-	printf("Current time: %"PRIdMAX".%03ld seconds since the Epoch\n",
-		(intmax_t)s, ms);
+	//printf("Current time: %"PRIdMAX".%03ld seconds since the Epoch\n",
+	//	(intmax_t)s, ms);
 
 	return ms;
 }
@@ -79,12 +79,12 @@ int calMean(vector<float>& x, float &cv)
 	sd = sqrt(var);
 	cv = (sd / mean) * 100;
 
-	cout << "Variance: ";
-	cout << setprecision(5) << var << endl;
-	cout << "Standard Deviation: ";
-	cout << setprecision(5) << sd << endl;
-	cout << "Coefficient of Variation: ";
-	cout << setprecision(5) << cv << "\%" << endl;
+	//cout << "Variance: ";
+	//cout << setprecision(5) << var << endl;
+	//cout << "Standard Deviation: ";
+	//cout << setprecision(5) << sd << endl;
+	//cout << "Coefficient of Variation: ";
+	//cout << setprecision(5) << cv << "\%" << endl;
 
 	return 0;
 }
@@ -106,7 +106,7 @@ void Inspector::unInit()
 //回调RGB frame data,并计算画质分数
 void Inspector::computeRGBScore(uint8_t * frameData, int width, int height, int64_t pts)
 {
-	std::cout << "frame width " << width << ", height " << height << ", pts " << pts << std::endl;
+	//std::cout << "frame width " << width << ", height " << height << ", pts " << pts << std::endl;
 
 	if (last_pts == 0)
 	{
@@ -126,7 +126,7 @@ void Inspector::computeRGBScore(uint8_t * frameData, int width, int height, int6
 		//calculate Coefficient of Variation
 		float cv;
 		calMean(diff_vec, cv);
-		std::cout << "score " << qualityscore << ", Coefficient of Variation " << cv << ", calculate time " << (ms2 - ms) << std::endl;
+		//std::cout << "score " << qualityscore << ", Coefficient of Variation " << cv << ", calculate time " << (ms2 - ms) << std::endl;
 		diff_vec.clear();
 
 		m_record << pts << ", " << width << ", " << height << ", " << qualityscore << "," << cv << std::endl;

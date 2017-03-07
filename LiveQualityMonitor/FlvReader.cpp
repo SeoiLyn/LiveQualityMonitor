@@ -210,10 +210,10 @@ int FlvReader::decode_packet(int *got_frame, int cached)
 			uint32_t outPts = (uint32_t)(frame->pkt_pts);
 			frame->pts = outPts;
 
-			printf("video_frame%s n:%d coded_n:%d pts:%s\n",
-				cached ? "(cached)" : "",
-				video_frame_count++, frame->coded_picture_number,
-				avts2timestr(frame->pts, &video_dec_ctx->time_base));
+			//printf("video_frame%s n:%d coded_n:%d pts:%s\n",
+			//	cached ? "(cached)" : "",
+			//	video_frame_count++, frame->coded_picture_number,
+			//	avts2timestr(frame->pts, &video_dec_ctx->time_base));
 #if 0
 			//yuv data
 			/* copy decoded frame to destination buffer:
