@@ -82,13 +82,14 @@ void ComputeBrisqueFeature(IplImage *orig, vector<double>& featurevector)
                         cvReleaseImage(&shifted_structdis);	
 		}
 
-                cvReleaseImage(&mu);
+        cvReleaseImage(&mu);
 		cvReleaseImage(&mu_sq);
 		cvReleaseImage(&sigma);
 		cvReleaseImage(&structdis);
 		cvReleaseImage(&imdist_scaled);
 	}
 	
+	cvReleaseImage(&orig_bw);
 }
     
 //function definitions
