@@ -30,6 +30,7 @@
   <ItemGroup>
     <Content Include="templates\index.html" />
     <Content Include="templates\monitor.html" />
+    <Content Include="config.cfg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
