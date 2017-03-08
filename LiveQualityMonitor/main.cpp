@@ -119,6 +119,7 @@ void computeRGBScore(uint8_t * frameData, int width, int height, int64_t pts)
 /*
 @param1 flv url address
 @param2 quality record filename
+@param3 brisque_revised folder
  */
 int main(int argc, char* argv[])
 {
@@ -137,6 +138,8 @@ int main(int argc, char* argv[])
 #else
 	char* record_file = "/home/water/temp/receive3.csv";
 #endif
+
+	Inspector::prefix = argv[3];
 
 	//read in the allrange file to setup internal scaling array
 	if (Inspector::read_range_file(Inspector::prefix)) {
