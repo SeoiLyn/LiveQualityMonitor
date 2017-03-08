@@ -140,6 +140,7 @@ int main(int argc, char* argv[])
 #endif
 
 	Inspector::prefix = argv[3];
+	Inspector::prefix = Inspector::prefix + "/";
 
 	//read in the allrange file to setup internal scaling array
 	if (Inspector::read_range_file(Inspector::prefix)) {

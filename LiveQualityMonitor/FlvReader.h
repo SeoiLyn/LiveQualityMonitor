@@ -13,6 +13,8 @@ extern "C" {
 
 typedef void(*scoreHandleCallBack)(uint8_t * frameData, int width, int height, int64_t pts);//statusCode 1为正确，-1为错误
 
+//#define SAVE_YUV_DUMP
+
 class FlvReader
 {
 public:
@@ -51,7 +53,9 @@ private:
 	int      video_dst_linesize[4];
 	int      video_dst_bufsize;
 	static std::string video_dst_filename;
+#ifdef SAVE_YUV_DUMP
 	FILE *video_dst_file;
+#endif
 
 private:
 	uint8_t *dst_data[4];

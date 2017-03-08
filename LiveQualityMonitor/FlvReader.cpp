@@ -11,7 +11,9 @@ FlvReader::FlvReader()
 , video_stream_idx(-1)
 , audio_stream_idx(-1)
 , frame(NULL)
+#ifdef SAVE_YUV_DUMP
 , video_dst_file(NULL)
+#endif
 , video_frame_count(0)
 , audio_frame_count(0)
 , dst_pix_fmt(AV_PIX_FMT_BGR24)
@@ -48,11 +50,13 @@ bool FlvReader::init(const std::string filename, scoreHandleCallBack pCallback)
 		video_stream = fmt_ctx->streams[video_stream_idx];
 		video_dec_ctx = video_stream->codec;
 
+#ifdef SAVE_YUV_DUMP
 		video_dst_file = fopen(video_dst_filename.c_str(), "wb");
 		if (!video_dst_file) {
 			fprintf(stderr, "Could not open destination file %s\n", video_dst_filename.c_str());
 			return false;
 		}
+#endif
 
 		/* allocate image where the decoded image will be put */
 		int ret = av_image_alloc(video_dst_data, video_dst_linesize,
@@ -214,7 +218,7 @@ int FlvReader::decode_packet(int *got_frame, int cached)
 			//	cached ? "(cached)" : "",
 			//	video_frame_count++, frame->coded_picture_number,
 			//	avts2timestr(frame->pts, &video_dec_ctx->time_base));
-#if 0
+#ifdef SAVE_YUV_DUMP
 			//yuv data
 			/* copy decoded frame to destination buffer:
 			* this is required since rawvideo expects non aligned data */
@@ -284,8 +288,10 @@ void FlvReader::deInit()
 	avformat_close_input(&fmt_ctx);
 	av_frame_free(&frame);
 
+#ifdef SAVE_YUV_DUMP
 	if (video_dst_file)
 		fclose(video_dst_file);
+#endif
 
 	av_freep(&dst_data[0]);
 	sws_freeContext(sws_ctx);
